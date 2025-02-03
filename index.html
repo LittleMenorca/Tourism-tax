@@ -85,6 +85,14 @@
         function calculateDays() {
             const arrivalDate = new Date(document.getElementById('arrival-date').value);
             const departureDate = new Date(document.getElementById('departure-date').value);
+
+            if (departureDate <= arrivalDate) {
+                alert('The departure date must be later than the arrival date.');
+                document.getElementById('departure-date').value = '';
+                document.getElementById('number-of-days').value = '';
+                return;
+            }
+
             const timeDiff = departureDate - arrivalDate;
             const days = Math.max(Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) + 1, 0);
             document.getElementById('number-of-days').value = days;
