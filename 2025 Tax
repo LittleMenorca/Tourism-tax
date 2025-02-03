@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourism Tax Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .form-container {
+            width: 90%;
+            max-width: 600px;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 15px;
+            }
+            label {
+                font-size: 14px;
+            }
+            input, textarea {
+                font-size: 14px;
+            }
+            button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Tourism Tax Form - Menorca</h2>
+        <form>
+            <div class="form-group">
+                <label for="arrival-date">Arrival Date</label>
+                <input type="date" id="arrival-date" name="arrival-date" value="2025-01-01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="departure-date">Departure Date</label>
+                <input type="date" id="departure-date" name="departure-date" value="2025-01-11" required>
+            </div>
+
+            <div class="form-group">
+                <label for="number-of-days">Number of Days</label>
+                <input type="number" id="number-of-days" name="number-of-days" value="10" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="number-of-occupants">Number of Occupants</label>
+                <input type="number" id="number-of-occupants" name="number-of-occupants" value="8" required>
+            </div>
+
+            <div class="form-group">
+                <label for="under-16">Number of People Under 16</label>
+                <input type="number" id="under-16" name="under-16" value="2" required>
+            </div>
+
+            <div class="form-group">
+                <label for="paying-guests">Number of Paying Guests</label>
+                <input type="number" id="paying-guests" name="paying-guests" value="6" required>
+            </div>
+
+            <div class="form-group">
+                <label for="daily-rate">Rate per Day (€)</label>
+                <input type="number" id="daily-rate" name="daily-rate" value="2.2" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="total-tax">Total Tax to Pay (€)</label>
+                <input type="number" id="total-tax" name="total-tax" value="132" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="payment-link">Payment Details</label>
+                <textarea id="payment-link" name="payment-link" readonly>https://www.caib.es/eboibfront/es/2016/10470/578257/ley-2-2016-de-30-de-marzo-del-impuesto-sobre-estan</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="iban">IBAN for Payment</label>
+                <input type="text" id="iban" name="iban" value="Cyril" readonly>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
