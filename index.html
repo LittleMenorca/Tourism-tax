@@ -90,6 +90,16 @@
             calculateTotal();
         }
 
+        function validateUnder16() {
+            const occupants = parseInt(document.getElementById('number-of-occupants').value) || 0;
+            const under16 = parseInt(document.getElementById('under-16').value) || 0;
+            if (under16 > occupants - 1) {
+                alert('Number of people under 16 cannot exceed number of occupants minus 1.');
+                document.getElementById('under-16').value = Math.max(0, occupants - 1);
+            }
+            calculatePayingGuests();
+        }
+
         function calculatePayingGuests() {
             const occupants = parseInt(document.getElementById('number-of-occupants').value) || 0;
             const under16 = parseInt(document.getElementById('under-16').value) || 0;
@@ -101,15 +111,16 @@
         function calculateTotal() {
             const payingGuests = parseInt(document.getElementById('paying-guests').value) || 0;
             const ratePerDay = parseFloat(document.getElementById('daily-rate').value) || 0;
-            const totalTax = payingGuests * ratePerDay;
+            const days = parseInt(document.getElementById('number-of-days').value) || 0;
+            const totalTax = payingGuests * ratePerDay * days;
             document.getElementById('total-tax').value = totalTax.toFixed(2);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('arrival-date').addEventListener('change', calculateDays);
             document.getElementById('departure-date').addEventListener('change', calculateDays);
-            document.getElementById('number-of-occupants').addEventListener('input', calculatePayingGuests);
-            document.getElementById('under-16').addEventListener('input', calculatePayingGuests);
+            document.getElementById('number-of-occupants').addEventListener('input', validateUnder16);
+            document.getElementById('under-16').addEventListener('input', validateUnder16);
         });
     </script>
 </head>
@@ -164,7 +175,7 @@
 
             <div class="form-group">
                 <label for="iban">IBAN for Payment</label>
-                <input type="text" id="iban" name="iban" value="Cyril" readonly>
+                <input type="text" id="iban" name="iban" value="FR76 1444 5004 0004 3048 6040 496" readonly>
             </div>
 
             <button type="submit">Submit</button>
