@@ -38,6 +38,9 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
+        input[readonly] {
+            background-color: #e9ecef;
+        }
         button {
             width: 100%;
             padding: 10px;
@@ -50,6 +53,13 @@
         }
         button:hover {
             background-color: #0056b3;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
         }
         @media (max-width: 600px) {
             .form-container {
@@ -66,6 +76,38 @@
             }
         }
     </style>
+    <script>
+        function calculateDays() {
+            const arrivalDate = new Date(document.getElementById('arrival-date').value);
+            const departureDate = new Date(document.getElementById('departure-date').value);
+            const timeDiff = departureDate - arrivalDate;
+            const days = Math.max(Math.ceil(timeDiff / (1000 * 60 * 60 * 24)), 0);
+            document.getElementById('number-of-days').value = days;
+            calculateTotal();
+        }
+
+        function calculatePayingGuests() {
+            const occupants = parseInt(document.getElementById('number-of-occupants').value) || 0;
+            const under16 = parseInt(document.getElementById('under-16').value) || 0;
+            const payingGuests = Math.max(occupants - under16, 0);
+            document.getElementById('paying-guests').value = payingGuests;
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            const payingGuests = parseInt(document.getElementById('paying-guests').value) || 0;
+            const ratePerDay = parseFloat(document.getElementById('daily-rate').value) || 0;
+            const totalTax = payingGuests * ratePerDay;
+            document.getElementById('total-tax').value = totalTax.toFixed(2);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('arrival-date').addEventListener('change', calculateDays);
+            document.getElementById('departure-date').addEventListener('change', calculateDays);
+            document.getElementById('number-of-occupants').addEventListener('input', calculatePayingGuests);
+            document.getElementById('under-16').addEventListener('input', calculatePayingGuests);
+        });
+    </script>
 </head>
 <body>
     <div class="form-container">
@@ -98,7 +140,7 @@
 
             <div class="form-group">
                 <label for="paying-guests">Number of Paying Guests</label>
-                <input type="number" id="paying-guests" name="paying-guests" value="6" required>
+                <input type="number" id="paying-guests" name="paying-guests" value="6" readonly>
             </div>
 
             <div class="form-group">
@@ -113,7 +155,7 @@
 
             <div class="form-group">
                 <label for="payment-link">Payment Details</label>
-                <textarea id="payment-link" name="payment-link" readonly>https://www.caib.es/eboibfront/es/2016/10470/578257/ley-2-2016-de-30-de-marzo-del-impuesto-sobre-estan</textarea>
+                <a href="https://www.caib.es/eboibfront/es/2016/10470/578257/ley-2-2016-de-30-de-marzo-del-impuesto-sobre-estan" target="_blank">Payment Link</a>
             </div>
 
             <div class="form-group">
