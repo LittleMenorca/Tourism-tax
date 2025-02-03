@@ -74,7 +74,7 @@
             const arrivalDate = new Date(document.getElementById('arrival-date').value);
             const departureDate = new Date(document.getElementById('departure-date').value);
             const timeDiff = departureDate - arrivalDate;
-            const days = Math.max(Math.ceil(timeDiff / (1000 * 60 * 60 * 24)), 0);
+            const days = Math.max(Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) + 1, 0);
             document.getElementById('number-of-days').value = days;
             calculateTotal();
         }
